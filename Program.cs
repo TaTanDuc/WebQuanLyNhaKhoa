@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using WebQuanLyNhaKhoa.Data;
 using WebQuanLyNhaKhoa.wwwroot.AutoMapper;
 
@@ -10,6 +12,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("NKhoa"));
+}); 
+
+builder.Services.AddControllers(options =>
+{
+	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -32,13 +39,25 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Register}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{	
+	endpoints.MapDefaultControllerRoute();
+
+	endpoints.MapAreaControllerRoute(
+		name: "Admin",
+		areaName: "Admin",
+		pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+		);
+});
+
+
+app.MapAreaControllerRoute(
+	name: "MyArea",
+	areaName: "Admin",
+	pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

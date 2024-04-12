@@ -1,16 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebQuanLyNhaKhoa.Models
 {
     public class RegisterVM
-    {
-		[Required(ErrorMessage ="Trường này không được bỏ trống!")]
-		[MaxLength(20,ErrorMessage = "Không quá 20 ký tự!")]
-		public string TenDangNhap { get; set; }
+    {	
+		[MinLength(5,ErrorMessage = "Không ít hơn 5 ký tự!")]
+        [MaxLength(20)]
+        [Remote(action: "VerifyUserName",controller: "RegisterController")]
+        [Required(ErrorMessage ="Trường này không được bỏ trống!")]
+		public string? TenDangNhap { get; set; }
 
-		[Required(ErrorMessage = "Trường này không được bỏ trống!")]
-		[MaxLength(20, ErrorMessage = "Không quá 20 ký tự!")]
-		[DataType(DataType.Password)]
-		public string MatKhau { get; set; }
+        [MaxLength(20)]
+        [MinLength(5, ErrorMessage = "Mật khẩu quá ngắn!")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Trường này không được bỏ trống!")]
+		public string? MatKhau { get; set; }
+
 	}
 }

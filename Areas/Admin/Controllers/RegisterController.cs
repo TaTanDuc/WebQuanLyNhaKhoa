@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using WebQuanLyNhaKhoa.Data;
 using WebQuanLyNhaKhoa.Models;
 
-namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
+namespace WebQuanLyNhaKhoa.Areas.Admin.Controllers
 {
-    public class RegisterController : Controller
+	[Area("Admin")]
+	public class RegisterController : Controller
     {
         private readonly QlnhaKhoaContext _context;
 
