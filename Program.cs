@@ -3,16 +3,25 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using WebQuanLyNhaKhoa.Data;
-using WebQuanLyNhaKhoa.wwwroot.AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using WebQuanLyNhaKhoa.Data.QlnhaKhoaContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("NKhoa"));
-}); 
+});
+
+builder.Services.AddDefaultIdentity<TaiKhoan>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<cs>();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+.AddDefaultTokenProviders()
+.AddDefaultUI()
+.AddEntityFrameworkStores<QlnhaKhoaContext>();
 
 builder.Services.AddControllers(options =>
 {
@@ -24,8 +33,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 		options.LoginPath = "/Login";
 		options.AccessDeniedPath = "/AccessDenied";
 							});
-
-builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
 
@@ -43,10 +50,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapAreaControllerRoute(
-	name: "MyArea",
-	areaName: "Admin",
-	pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.MapControllerRoute(
 	name: "default",
