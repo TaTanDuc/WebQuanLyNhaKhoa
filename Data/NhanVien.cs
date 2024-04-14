@@ -9,7 +9,7 @@ public partial class NhanVien
 
     public string TenDangNhap { get; set; } = null!;
 
-    public string? Ten { get; set; }
+    public string Ten { get; set; } = null!;
 
     public string? Sdt { get; set; }
 

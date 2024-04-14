@@ -14,16 +14,16 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using TaiKhoan;
+using WebQuanLyNhaKhoa.Models;
 
 namespace WebQuanLyNhaKhoa.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<TaiKhoan> _signInManager;
+        private readonly SignInManager<UserVM> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<TaiKhoan> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<UserVM> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;

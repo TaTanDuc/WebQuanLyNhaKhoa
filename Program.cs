@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using WebQuanLyNhaKhoa.Data;
 using Microsoft.AspNetCore.Identity;
-using WebQuanLyNhaKhoa.Data.QlnhaKhoaContext;
+using System.Configuration;
+using WebQuanLyNhaKhoa.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,25 +16,19 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("NKhoa"));
+    options.EnableServiceProviderCaching(false);
 });
 
-builder.Services.AddDefaultIdentity<TaiKhoan>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<cs>();
+builder.Services.AddIdentity<UserVM,IdentityRole>()
+    .AddEntityFrameworkStores<QlnhaKhoaContext>()
+    .AddDefaultTokenProviders()
+	.AddDefaultUI();
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-.AddDefaultTokenProviders()
-.AddDefaultUI()
-.AddEntityFrameworkStores<QlnhaKhoaContext>();
 
 builder.Services.AddControllers(options =>
 {
 	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-	.AddCookie(options => {
-		options.LoginPath = "/Login";
-		options.AccessDeniedPath = "/AccessDenied";
-							});
 
 var app = builder.Build();
 

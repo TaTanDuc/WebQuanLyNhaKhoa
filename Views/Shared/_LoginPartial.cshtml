@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using TaiKhoan
+@using WebQuanLyNhaKhoa.Models
 
-@inject SignInManager<TaiKhoan> SignInManager
-@inject UserManager<TaiKhoan> UserManager
+@inject SignInManager<UserVM> SignInManager
+@inject UserManager<UserVM> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
