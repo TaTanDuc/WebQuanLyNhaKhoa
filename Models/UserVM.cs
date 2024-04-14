@@ -19,11 +19,5 @@ namespace WebQuanLyNhaKhoa.Models
         public string? KinhNghiem { get; set; }
 
         public string? Hinh { get; set; }
-
-        public virtual ICollection<DanhSachKham> DanhSachKhams { get; set; } = new List<DanhSachKham>();
-
-        public virtual ChucVu MaCvNavigation { get; set; }
-
-        public virtual TaiKhoan TenDangNhapNavigation { get; set; }
     }
 }

@@ -19,7 +19,7 @@ builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
     options.EnableServiceProviderCaching(false);
 });
 
-builder.Services.AddIdentity<UserVM,IdentityRole>()
+builder.Services.AddIdentity<UserVM,RoleVM>()
     .AddEntityFrameworkStores<QlnhaKhoaContext>()
     .AddDefaultTokenProviders()
 	.AddDefaultUI();
@@ -28,6 +28,13 @@ builder.Services.AddIdentity<UserVM,IdentityRole>()
 builder.Services.AddControllers(options =>
 {
 	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("Manager", policy => policy.RequireRole("Manager"));
+    options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
 var app = builder.Build();
@@ -54,3 +61,4 @@ app.MapControllerRoute(
 
 
 app.Run();
+

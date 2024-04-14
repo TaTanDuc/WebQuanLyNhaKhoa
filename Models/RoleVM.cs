@@ -1,13 +1,16 @@
-﻿using WebQuanLyNhaKhoa.Data;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace WebQuanLyNhaKhoa.Models
 {
-    public class RoleVM
+    public class RoleVM : IdentityRole
     {
-        public string MaCv { get; set; } = null!;
+        public RoleVM(string roleName) : base(roleName)
+        {
+            TenCv = roleName;
+        }
 
-        public string TenCv { get; set; } = null!;
+        public string MaCv { get; set; }
 
-        public virtual ICollection<NhanVien> NhanViens { get; set; } = new List<NhanVien>();
+        public string TenCv { get; set; }
     }
 }

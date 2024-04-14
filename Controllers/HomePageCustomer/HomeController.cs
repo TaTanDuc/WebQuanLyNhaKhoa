@@ -21,7 +21,7 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
         public async Task<IActionResult> Index()
         {
             int Experienced = 10;
-            var qlnhaKhoaContext = _context.NhanViens.Where(n => Convert.ToInt16(n.KinhNghiem) > Experienced).Take(4);
+            var qlnhaKhoaContext = _context.NhanViens.Where(n => n.KinhNghiem > Experienced).Take(4);
             return View(await qlnhaKhoaContext.ToListAsync());
         }
         private async Task<string> SaveImage(IFormFile image)
