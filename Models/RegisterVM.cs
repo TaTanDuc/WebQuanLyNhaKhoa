@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using WebQuanLyNhaKhoa.Data;
 
 namespace WebQuanLyNhaKhoa.Models
 {
@@ -16,6 +18,5 @@ namespace WebQuanLyNhaKhoa.Models
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Trường này không được bỏ trống!")]
 		public string? MatKhau { get; set; }
-
 	}
 }
