@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +11,10 @@ using WebQuanLyNhaKhoa.Data;
 
 namespace WebQuanLyNhaKhoa.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class HomeController : Controller
+
+	[Area("Admin")]
+	[Authorize(Roles="Admin")]
+	public class HomeController : Controller
     {
         private readonly QlnhaKhoaContext _context;
         public HomeController(QlnhaKhoaContext context)

@@ -147,7 +147,7 @@ create table NhanVien
 (
 	MaNV int identity(1,1) not null,
 	TenDangNhap varchar(22) not null,
-	Ten nvarchar(50) not null,
+	Ten nvarchar(50),
 	SDT CHAR (10),
 	MaCV char(3) not null,
 	KinhNghiem nvarchar(50),

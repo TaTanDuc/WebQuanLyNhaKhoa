@@ -28,7 +28,13 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
             if (ModelState.IsValid)
             {
                 var taiKhoan = _mapper.Map<TaiKhoan>(model);
+                var user = new NhanVien
+                {
+                    TenDangNhap = model.TenDangNhap,
+                    MaCv = "US"
+                };
                 _context.Add(taiKhoan);
+                _context.Add(user);
                 _context.SaveChanges();
                 return RedirectToAction("Index","Login");
             }

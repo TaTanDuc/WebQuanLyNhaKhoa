@@ -9,8 +9,6 @@ namespace WebQuanLyNhaKhoa.wwwroot.AutoMapper
 		public AutoMapperProfile() 
 		{
 			CreateMap<RegisterVM, TaiKhoan>();
-
-			CreateMap<NhanVienVM, NhanVien>();
 		}
 	}
 }

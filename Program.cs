@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
@@ -19,12 +20,6 @@ builder.Services.AddControllers(options =>
 	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-	.AddCookie(options => {
-		options.LoginPath = "/Login";
-		options.AccessDeniedPath = "/AccessDenied";
-							});
-
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 var app = builder.Build();
@@ -38,20 +33,19 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthentication();
 app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapAreaControllerRoute("myAdmin", "Admin", "Admin/{controller=Home}/{action=Index}/{id?}");
+	endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+}
+);
 
-app.MapAreaControllerRoute(
-	name: "MyArea",
-	areaName: "Admin",
-	pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
-
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=BenhNhans}/{action=Index}/{id?}");
 
 
 app.Run();
