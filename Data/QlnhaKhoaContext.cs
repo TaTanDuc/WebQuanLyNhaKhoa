@@ -143,9 +143,7 @@ public partial class QlnhaKhoaContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("IDBenhNhan");
-            entity.Property(e => e.MaNv)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("MaNV");
+            entity.Property(e => e.MaNv).HasColumnName("MaNV");
             entity.Property(e => e.NgayKham).HasColumnType("datetime");
 
             entity.HasOne(d => d.IdbenhNhanNavigation).WithMany(p => p.DanhSachKhams)
@@ -155,7 +153,6 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.DanhSachKhams)
                 .HasForeignKey(d => d.MaNv)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("chk_MaNV_DanhSachKham");
         });
 
