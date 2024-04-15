@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
 
-namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
+namespace WebQuanLyNhaKhoa.Controllers.UserController
 {
     [Area("Admin")]
     public class KhoesController : Controller
