@@ -3,7 +3,7 @@
  @using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Index";
-    Layout = "_LayoutTLong.cshtml";
+    Layout = "~/Views/Shared/_LayoutTLong.cshtml";
 }
 <style>
     .pager{
@@ -89,7 +89,7 @@
                     {
                     <li class="flex flex-col items-center max-w-3xl bg-pink-100 p-[20px] rounded-xl group" style="background-color:#0000ff3d">
 
-                            <img src="@Html.DisplayFor(modelItem => item.Hinh)"
+                            <img src="/@Html.DisplayFor(modelItem => item.Hinh)"
                                  alt="@item.Ten"
                                  class="h-[400px] w-full object-cover rounded-md transition-all duration-300 transform group-hover:scale-110" />
                             <div class="mt-3">
@@ -104,7 +104,6 @@
                                     Edit
                                 </a>
                             </div>
-
                         </li>
                   }
             </ul>

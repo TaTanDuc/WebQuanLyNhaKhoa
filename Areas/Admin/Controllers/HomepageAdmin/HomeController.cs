@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using WebQuanLyNhaKhoa.Data;
 using WebQuanLyNhaKhoa.Models;
-namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using WebQuanLyNhaKhoa.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
     public class HomeController : Controller

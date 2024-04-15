@@ -1,6 +1,7 @@
-@model IEnumerable<WebQuanLyNhaKhoa.Data.NhanVien>
+﻿@model IEnumerable<WebQuanLyNhaKhoa.Data.NhanVien>
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 <!-- Header Start -->
 <div class="container-fluid header bg-primary p-0 mb-5">
@@ -323,7 +324,6 @@
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit" asp-action="Add" asp-controller="BookAppointment">Move Book Appointment</button>
-
                             </div>
                         </div>
                     </form>

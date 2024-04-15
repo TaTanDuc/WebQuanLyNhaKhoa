@@ -18,7 +18,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("NhaKhoa"));
-}
+});
 
 builder.Services.AddScoped<EmailService>();
 
@@ -57,6 +57,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllerRoute(
  name: "admin",
  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
  );

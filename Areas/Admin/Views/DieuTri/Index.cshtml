@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<WebQuanLyNhaKhoa.Data.DieuTri>
 
 @{
-    Layout = "_LayoutTLong.cshtml";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutTLong.cshtml";
 }
 <p>
     <a asp-action="Index" asp-controller="DanhSachKhams">Quay về danh sách khám</a>
