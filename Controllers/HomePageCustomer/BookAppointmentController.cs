@@ -23,14 +23,13 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
         [HttpPost]
         public IActionResult Add(BenhNhan benhNhan)
         {
-            if (ModelState.IsValid)
-            {
+            var count = benhNhan.IdbenhNhan.Count() + 1;
                 if (ModelState.IsValid)
                 {
+                    benhNhan.IdbenhNhan = count.ToString();
                     _context.BenhNhans.Add(benhNhan);
                     _context.SaveChanges();
                 }
-            }
             return View(benhNhan);
         }
     }

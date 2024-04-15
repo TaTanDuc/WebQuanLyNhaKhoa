@@ -43,7 +43,7 @@
                         <div class="row g-3" style="align-items: f">
                             <div class="col-12 col-sm-6">
                                 <label asp-for="IdbenhNhan" class="control-label">Mã bệnh nhân</label>
-                                <input type="text" asp-for="IdbenhNhan" required class="form-control border-0" placeholder="Sample: ntl" style="height: 55px;">
+                                <input disabled type="text" asp-for="IdbenhNhan" required class="form-control border-0" placeholder="Sample: ntl" style="height: 55px;">
                                 <span asp-validation-for="IdbenhNhan" class="text-danger"></span>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-12 col-sm-6">
                                 <label asp-for="HoTen" class="control-label">Họ tên</label>
-                                <input asp-for="HoTen" required type="text" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                <input asp-for="HoTen" required type="text" class="form-control border-0" placeholder="Your name" style="height: 55px;">
                             </div>
 
                             <div class="col-12 col-sm-6">
@@ -83,7 +83,6 @@
                                 <textarea class="form-control border-0" rows="5" placeholder="Describe your problem"></textarea>
                             </div>
                             <div class="col-12">
-
                                 <button class="btn btn-primary w-100 py-3" value="Create" type="submit">Book Appointment</button>
                             </div>
                         </div>
@@ -101,7 +100,7 @@
     formEL.addEventListener('submit', (e) => {
         e.preventDefault();
         toastr.susscess('My name is Inigo Montoya. You killed my father, prepare to die!')
-      //  toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+        toastr.success('Have fun storming the castle!', 'Miracle Max Says')
     });
 </script>
 
