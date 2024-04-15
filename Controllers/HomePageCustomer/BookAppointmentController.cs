@@ -20,17 +20,17 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Add(BenhNhan benhNhan)
         {
-            var count = benhNhan.IdbenhNhan.Count() + 1;
-                if (ModelState.IsValid)
-                {
+            var count = _context.BenhNhans.Count() + 1;
                     benhNhan.IdbenhNhan = count.ToString();
                     _context.BenhNhans.Add(benhNhan);
                     _context.SaveChanges();
-                }
-            return View(benhNhan);
+            return RedirectToAction("Index","Home");
         }
+
+
     }
 }
