@@ -13,7 +13,7 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IVnPayService,VnPayService>();
 builder.Services.AddScoped<EmailService>();
@@ -26,20 +26,22 @@ builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-	options.LoginPath = $"/Identity/Account/Login";
+    options.LoginPath = $"/Identity/Account/Login";
     options.LogoutPath = $"/Identity/Account/Logout";
     options.LogoutPath = $"/Identity/Account/AccessDenied";
 });
 
-builder.Services.AddIdentity<UserVM,IdentityRole>()
+/*builder.Services.AddIdentity<UserVM,IdentityRole>()
     .AddEntityFrameworkStores<QlnhaKhoaContext>()
     .AddDefaultTokenProviders()
-	.AddDefaultUI();
+	.AddDefaultUI();*/
 
 builder.Services.AddControllers(options =>
 {
 	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 app.UseStaticFiles();

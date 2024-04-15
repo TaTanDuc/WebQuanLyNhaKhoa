@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
-
-namespace WebQuanLyNhaKhoa.Controllers.UserController
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
     public class DonThuocsController : Controller

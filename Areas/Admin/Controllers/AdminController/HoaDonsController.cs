@@ -10,8 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using WebQuanLyNhaKhoa.ServicesPay;
-
-namespace WebQuanLyNhaKhoa.Controllers.UserController
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
     public class HoaDonsController : Controller
@@ -205,13 +204,11 @@ namespace WebQuanLyNhaKhoa.Controllers.UserController
         }
 
         // GET: HoaDons/Delete/5
-        [Authorize]
         public IActionResult PaymentFail()
         {
             return View();
         }
 
-        [Authorize]
         public IActionResult PaymentCallBack([Bind("IdhoaDon,IddonThuoc,IddieuTri,IDKham,PhuongThucThanhToan,TienThuoc,TienDieuTri,TongTien,NgayLap,EmailBn")] HoaDon hoaDon)
         {
 
