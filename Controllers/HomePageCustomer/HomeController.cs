@@ -21,12 +21,12 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
         }
 
         // GET: Home
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             int Experienced = 10;
             var qlnhaKhoaContext = _context.NhanViens.Where(n => n.KinhNghiem > Experienced).Take(4);
             return View(await qlnhaKhoaContext.ToListAsync());
-        }
+        }*/
         private async Task<string> SaveImage(IFormFile image)
         {
             var savePath = Path.Combine("wwwroot/images", image.FileName);

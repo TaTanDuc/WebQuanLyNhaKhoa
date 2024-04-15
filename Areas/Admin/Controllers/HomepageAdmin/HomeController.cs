@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebQuanLyNhaKhoa.Data;
 using WebQuanLyNhaKhoa.Models;
-
-namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
 {
     public class HomeController : Controller
     {

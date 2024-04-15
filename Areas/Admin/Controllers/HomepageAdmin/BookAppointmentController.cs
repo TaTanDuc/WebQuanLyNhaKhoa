@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
 
-namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
 {
     public class BookAppointmentController : Controller
     {
