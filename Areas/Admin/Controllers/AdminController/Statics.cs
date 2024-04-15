@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 
-namespace WebQuanLyNhaKhoa.Controllers.UserController
+namespace WebQuanLyNhaKhoa.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class Statics : Controller
