@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebQuanLyNhaKhoa.Models;
 
 namespace WebQuanLyNhaKhoa.Data;
 
-public partial class QlnhaKhoaContext : DbContext
+public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 {
     public QlnhaKhoaContext()
     {
@@ -43,10 +45,12 @@ public partial class QlnhaKhoaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+
         => optionsBuilder.UseSqlServer("Data Source=LAPTOP-INB6SBCV\\SQLEXPRESS;Initial Catalog=QLNhaKhoa;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<BenhNhan>(entity =>
         {
             entity.HasKey(e => e.IdbenhNhan).HasName("PK__BenhNhan__33CC78E40A9D3BCF");
@@ -73,7 +77,7 @@ public partial class QlnhaKhoaContext : DbContext
 
         modelBuilder.Entity<ChanDoan>(entity =>
         {
-            entity.HasKey(e => e.IdchanDoan).HasName("PK__ChanDoan__38CFF322B33E80A5");
+            entity.HasKey(e => e.IdchanDoan).HasName("PK__ChanDoan__38CFF3
 
             entity.ToTable("ChanDoan");
 
@@ -328,7 +332,6 @@ public partial class QlnhaKhoaContext : DbContext
             entity.ToTable("NhanVien");
 
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
-            entity.Property(e => e.KinhNghiem).HasMaxLength(50);
             entity.Property(e => e.MaCv)
                 .HasMaxLength(3)
                 .IsUnicode(false)

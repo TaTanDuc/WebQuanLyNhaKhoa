@@ -15,7 +15,7 @@ public partial class NhanVien
 
     public string MaCv { get; set; } = null!;
 
-    public string? KinhNghiem { get; set; }
+    public int? KinhNghiem { get; set; }
 
     public string? Hinh { get; set; }
 
