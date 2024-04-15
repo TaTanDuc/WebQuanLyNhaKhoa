@@ -9,6 +9,7 @@ using WebQuanLyNhaKhoa.Data;
 
 namespace WebQuanLyNhaKhoa.Controllers.UserController
 {
+    [Area("Admin")]
     public class DanhSachKhamsController : Controller
     {
         private readonly QlnhaKhoaContext _context;

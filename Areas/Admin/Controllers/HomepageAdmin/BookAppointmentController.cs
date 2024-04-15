@@ -4,6 +4,7 @@ using WebQuanLyNhaKhoa.Data;
 
 namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
 {
+    [Area("Admin")]
     public class BookAppointmentController : Controller
     {
         private readonly QlnhaKhoaContext _context;

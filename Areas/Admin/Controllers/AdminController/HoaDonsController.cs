@@ -11,6 +11,7 @@ using System.Globalization;
 
 namespace WebQuanLyNhaKhoa.Controllers.UserController
 {
+    [Area("Admin")]
     public class HoaDonsController : Controller
     {
         private readonly QlnhaKhoaContext _context;
