@@ -20,3 +20,10 @@ html {
 a {
     color: #8D8E92
 }
+
+.toast-message {
+    color: black;
+}
+body {
+  margin-bottom: 60px;
+}

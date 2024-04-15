@@ -45,14 +45,15 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP_459\\MSSQLSERVER01;Initial Catalog=QLNhaKhoa;Integrated Security=True;Trust Server Certificate=True");
+
+        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-INB6SBCV\\SQLEXPRESS;Initial Catalog=QLNhaKhoa;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<BenhNhan>(entity =>
         {
-            entity.HasKey(e => e.IdbenhNhan).HasName("PK__BenhNhan__33CC78E4CC508853");
+            entity.HasKey(e => e.IdbenhNhan).HasName("PK__BenhNhan__33CC78E40A9D3BCF");
 
             entity.ToTable("BenhNhan");
 
@@ -76,7 +77,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<ChanDoan>(entity =>
         {
-            entity.HasKey(e => e.IdchanDoan).HasName("PK__ChanDoan__38CFF322FA1A0FA8");
+            entity.HasKey(e => e.IdchanDoan).HasName("PK__ChanDoan__38CFF3
 
             entity.ToTable("ChanDoan");
 
@@ -90,7 +91,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<ChucVu>(entity =>
         {
-            entity.HasKey(e => e.MaCv).HasName("PK__ChucVu__27258E763FCF67CD");
+            entity.HasKey(e => e.MaCv).HasName("PK__ChucVu__27258E76DBFE2135");
 
             entity.ToTable("ChucVu");
 
@@ -106,7 +107,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<DanhSachKham>(entity =>
         {
-            entity.HasKey(e => e.Idkham).HasName("PK__DanhSach__1AB7B4EBC9C507A4");
+            entity.HasKey(e => e.Idkham).HasName("PK__DanhSach__1AB7B4EBBB73E07A");
 
             entity.ToTable("DanhSachKham");
 
@@ -135,7 +136,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<DichVu>(entity =>
         {
-            entity.HasKey(e => e.IddichVu).HasName("PK__DichVu__C0C959284DEBAF55");
+            entity.HasKey(e => e.IddichVu).HasName("PK__DichVu__C0C95928C2C1BF83");
 
             entity.ToTable("DichVu");
 
@@ -161,7 +162,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<DieuTri>(entity =>
         {
-            entity.HasKey(e => e.IddieuTri).HasName("PK__DieuTri__85B3D346B461421D");
+            entity.HasKey(e => e.IddieuTri).HasName("PK__DieuTri__85B3D346F07FFEB3");
 
             entity.ToTable("DieuTri");
 
@@ -201,7 +202,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<DonThuoc>(entity =>
         {
-            entity.HasKey(e => e.IddonThuoc).HasName("PK__DonThuoc__51DB14E8F508B9A4");
+            entity.HasKey(e => e.IddonThuoc).HasName("PK__DonThuoc__51DB14E889898F98");
 
             entity.ToTable("DonThuoc");
 
@@ -235,7 +236,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<HoaDon>(entity =>
         {
-            entity.HasKey(e => e.IdhoaDon).HasName("PK__HoaDon__5B896F49B2BDCE01");
+            entity.HasKey(e => e.IdhoaDon).HasName("PK__HoaDon__5B896F497F16612B");
 
             entity.ToTable("HoaDon");
 
@@ -274,7 +275,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<Kho>(entity =>
         {
-            entity.HasKey(e => e.IddungCu).HasName("PK__Kho__50E8F160A760D1CB");
+            entity.HasKey(e => e.IddungCu).HasName("PK__Kho__50E8F16097B5FC5E");
 
             entity.ToTable("Kho");
 
@@ -300,7 +301,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<LichSuNhapXuat>(entity =>
         {
-            entity.HasKey(e => e.MaLs).HasName("PK__LichSuNh__2725C772403A6931");
+            entity.HasKey(e => e.MaLs).HasName("PK__LichSuNh__2725C77279912860");
 
             entity.ToTable("LichSuNhapXuat");
 
@@ -326,7 +327,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<NhanVien>(entity =>
         {
-            entity.HasKey(e => e.MaNv).HasName("PK__NhanVien__2725D70AD1CBE617");
+            entity.HasKey(e => e.MaNv).HasName("PK__NhanVien__2725D70A25545DAD");
 
             entity.ToTable("NhanVien");
 
@@ -359,7 +360,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<TaiKhoan>(entity =>
         {
-            entity.HasKey(e => e.TenDangNhap).HasName("PK__TaiKhoan__55F68FC18F2DBF18");
+            entity.HasKey(e => e.TenDangNhap).HasName("PK__TaiKhoan__55F68FC127E7A77D");
 
             entity.ToTable("TaiKhoan");
 
@@ -373,7 +374,7 @@ public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 
         modelBuilder.Entity<ThiTruong>(entity =>
         {
-            entity.HasKey(e => e.IdsanPham).HasName("PK__ThiTruon__9D45E58AF1B538DC");
+            entity.HasKey(e => e.IdsanPham).HasName("PK__ThiTruon__9D45E58A3AF783C3");
 
             entity.ToTable("ThiTruong");
 

@@ -14,11 +14,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("NKhoa"));
-    options.EnableServiceProviderCaching(false);
-});
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NhaKhoa"));
+}
+
+builder.Services.AddScoped<EmailService>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -37,21 +39,15 @@ builder.Services.AddControllers(options =>
 	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("Manager", policy => policy.RequireRole("Manager"));
-    options.AddPolicy("User", policy => policy.RequireRole("User"));
-});
-
 var app = builder.Build();
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	app.UseHsts();
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -61,8 +57,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
-app.MapControllerRoute(
  name: "admin",
  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
  );
@@ -70,7 +64,6 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();
 
