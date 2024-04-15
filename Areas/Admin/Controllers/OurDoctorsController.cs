@@ -7,12 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
+using WebQuanLyNhaKhoa.Models;
 
 namespace WebQuanLyNhaKhoa.Areas.Admin.Controllers
-{	
+{
     [Area("Admin")]
-    [Authorize(Roles="Admin")]
-	public class OurDoctorsController : Controller
+    [Authorize(Roles = SD.Role_Admin)]
+    public class OurDoctorsController : Controller
     {
         private readonly QlnhaKhoaContext _context;
 

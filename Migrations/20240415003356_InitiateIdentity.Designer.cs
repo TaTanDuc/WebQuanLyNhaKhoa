@@ -12,7 +12,7 @@ using WebQuanLyNhaKhoa.Data;
 namespace WebQuanLyNhaKhoa.Migrations
 {
     [DbContext(typeof(QlnhaKhoaContext))]
-    [Migration("20240414222637_InitiateIdentity")]
+    [Migration("20240415003356_InitiateIdentity")]
     partial class InitiateIdentity
     {
         /// <inheritdoc />
@@ -24,6 +24,33 @@ namespace WebQuanLyNhaKhoa.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -172,7 +199,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnName("SDT");
 
                     b.HasKey("IdbenhNhan")
-                        .HasName("PK__BenhNhan__33CC78E47CD307ED");
+                        .HasName("PK__BenhNhan__33CC78E4CC508853");
 
                     b.ToTable("BenhNhan", (string)null);
                 });
@@ -192,7 +219,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("IdchanDoan")
-                        .HasName("PK__ChanDoan__38CFF32204046E90");
+                        .HasName("PK__ChanDoan__38CFF322FA1A0FA8");
 
                     b.ToTable("ChanDoan", (string)null);
                 });
@@ -213,7 +240,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnName("TenCV");
 
                     b.HasKey("MaCv")
-                        .HasName("PK__ChucVu__27258E76A8F57B85");
+                        .HasName("PK__ChucVu__27258E763FCF67CD");
 
                     b.ToTable("ChucVu", (string)null);
                 });
@@ -243,7 +270,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("datetime");
 
                     b.HasKey("Idkham")
-                        .HasName("PK__DanhSach__1AB7B4EB3368E04C");
+                        .HasName("PK__DanhSach__1AB7B4EBC9C507A4");
 
                     b.HasIndex("IdbenhNhan");
 
@@ -283,7 +310,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("IddichVu")
-                        .HasName("PK__DichVu__C0C95928CC6743D9");
+                        .HasName("PK__DichVu__C0C959284DEBAF55");
 
                     b.HasIndex("IdchanDoan");
 
@@ -330,7 +357,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("money");
 
                     b.HasKey("IddieuTri")
-                        .HasName("PK__DieuTri__85B3D3464596BA37");
+                        .HasName("PK__DieuTri__85B3D346B461421D");
 
                     b.HasIndex("IddichVu");
 
@@ -380,7 +407,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("money");
 
                     b.HasKey("IddonThuoc")
-                        .HasName("PK__DonThuoc__51DB14E8C5B512CC");
+                        .HasName("PK__DonThuoc__51DB14E8F508B9A4");
 
                     b.HasIndex("IddungCu");
 
@@ -436,7 +463,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("money");
 
                     b.HasKey("IdhoaDon")
-                        .HasName("PK__HoaDon__5B896F4974A06A7F");
+                        .HasName("PK__HoaDon__5B896F49B2BDCE01");
 
                     b.HasIndex("IddieuTri");
 
@@ -483,7 +510,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("IddungCu")
-                        .HasName("PK__Kho__50E8F16047C2446B");
+                        .HasName("PK__Kho__50E8F160A760D1CB");
 
                     b.HasIndex("IdsanPham");
 
@@ -540,7 +567,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("money");
 
                     b.HasKey("MaLs")
-                        .HasName("PK__LichSuNh__2725C772CBCB618D");
+                        .HasName("PK__LichSuNh__2725C772403A6931");
 
                     b.HasIndex("IddungCu");
 
@@ -589,7 +616,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("varchar(22)");
 
                     b.HasKey("MaNv")
-                        .HasName("PK__NhanVien__2725D70AE1F78570");
+                        .HasName("PK__NhanVien__2725D70AD1CBE617");
 
                     b.HasIndex("MaCv");
 
@@ -612,7 +639,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("TenDangNhap")
-                        .HasName("PK__TaiKhoan__55F68FC10F7C5CFC");
+                        .HasName("PK__TaiKhoan__55F68FC18F2DBF18");
 
                     b.ToTable("TaiKhoan", (string)null);
                 });
@@ -645,44 +672,9 @@ namespace WebQuanLyNhaKhoa.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("IdsanPham")
-                        .HasName("PK__ThiTruon__9D45E58A817F1608");
+                        .HasName("PK__ThiTruon__9D45E58AF1B538DC");
 
                     b.ToTable("ThiTruong", (string)null);
-                });
-
-            modelBuilder.Entity("WebQuanLyNhaKhoa.Models.RoleVM", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaCv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("TenCv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("WebQuanLyNhaKhoa.Models.UserVM", b =>
@@ -774,7 +766,7 @@ namespace WebQuanLyNhaKhoa.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("WebQuanLyNhaKhoa.Models.RoleVM", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -801,7 +793,7 @@ namespace WebQuanLyNhaKhoa.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("WebQuanLyNhaKhoa.Models.RoleVM", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

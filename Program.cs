@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Configuration;
 using WebQuanLyNhaKhoa.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +20,17 @@ builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
     options.EnableServiceProviderCaching(false);
 });
 
-builder.Services.AddIdentity<UserVM,RoleVM>()
+builder.Services.ConfigureApplicationCookie(options =>
+{
+	options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.LogoutPath = $"/Identity/Account/AccessDenied";
+});
+
+builder.Services.AddIdentity<UserVM,IdentityRole>()
     .AddEntityFrameworkStores<QlnhaKhoaContext>()
     .AddDefaultTokenProviders()
 	.AddDefaultUI();
-
 
 builder.Services.AddControllers(options =>
 {
@@ -56,8 +63,13 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+ name: "admin",
+ pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+ );
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
 app.Run();

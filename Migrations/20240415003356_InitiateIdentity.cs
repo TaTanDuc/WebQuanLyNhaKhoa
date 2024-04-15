@@ -16,8 +16,6 @@ namespace WebQuanLyNhaKhoa.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    MaCv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TenCv = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -59,7 +57,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "BenhNhan",
                 columns: table => new
                 {
@@ -73,7 +71,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__BenhNhan__33CC78E47CD307ED", x => x.IDBenhNhan);
+                    table.PrimaryKey("PK__BenhNhan__33CC78E4CC508853", x => x.IDBenhNhan);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,7 +83,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__ChanDoan__38CFF32204046E90", x => x.IDChanDoan);
+                    table.PrimaryKey("PK__ChanDoan__38CFF322FA1A0FA8", x => x.IDChanDoan);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,7 +95,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__ChucVu__27258E76A8F57B85", x => x.MaCV);
+                    table.PrimaryKey("PK__ChucVu__27258E763FCF67CD", x => x.MaCV);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,7 +107,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__TaiKhoan__55F68FC10F7C5CFC", x => x.TenDangNhap);
+                    table.PrimaryKey("PK__TaiKhoan__55F68FC18F2DBF18", x => x.TenDangNhap);
                 });
 
             migrationBuilder.CreateTable(
@@ -124,9 +122,9 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__ThiTruon__9D45E58A817F1608", x => x.IDSanPham);
+                    table.PrimaryKey("PK__ThiTruon__9D45E58AF1B538DC", x => x.IDSanPham);
                 });
-
+*/
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
@@ -233,7 +231,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
+            /*migrationBuilder.CreateTable(
                 name: "DichVu",
                 columns: table => new
                 {
@@ -245,7 +243,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__DichVu__C0C95928CC6743D9", x => x.IDDichVu);
+                    table.PrimaryKey("PK__DichVu__C0C959284DEBAF55", x => x.IDDichVu);
                     table.ForeignKey(
                         name: "chk_IDChanDoan_DichVu",
                         column: x => x.IDChanDoan,
@@ -268,7 +266,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__NhanVien__2725D70AE1F78570", x => x.MaNV);
+                    table.PrimaryKey("PK__NhanVien__2725D70AD1CBE617", x => x.MaNV);
                     table.ForeignKey(
                         name: "chk_MaCV",
                         column: x => x.MaCV,
@@ -294,7 +292,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Kho__50E8F16047C2446B", x => x.IDDungCu);
+                    table.PrimaryKey("PK__Kho__50E8F160A760D1CB", x => x.IDDungCu);
                     table.ForeignKey(
                         name: "chk_IDSanPham_Kho",
                         column: x => x.IDSanPham,
@@ -313,7 +311,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__DanhSach__1AB7B4EB3368E04C", x => x.IDKham);
+                    table.PrimaryKey("PK__DanhSach__1AB7B4EBC9C507A4", x => x.IDKham);
                     table.ForeignKey(
                         name: "chk_IDBenhNhan_DanhSachKham",
                         column: x => x.IDBenhNhan,
@@ -344,7 +342,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__LichSuNh__2725C772CBCB618D", x => x.MaLS);
+                    table.PrimaryKey("PK__LichSuNh__2725C772403A6931", x => x.MaLS);
                     table.ForeignKey(
                         name: "chk_IDDungCu_NK",
                         column: x => x.IDDungCu,
@@ -366,7 +364,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__DieuTri__85B3D3464596BA37", x => x.IDDieuTri);
+                    table.PrimaryKey("PK__DieuTri__85B3D346B461421D", x => x.IDDieuTri);
                     table.ForeignKey(
                         name: "chk_IDDichVu_DieuTri",
                         column: x => x.IDDichVu,
@@ -399,7 +397,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__DonThuoc__51DB14E8C5B512CC", x => x.IDDonThuoc);
+                    table.PrimaryKey("PK__DonThuoc__51DB14E8F508B9A4", x => x.IDDonThuoc);
                     table.ForeignKey(
                         name: "chk_IDDungCu_DonThuoc",
                         column: x => x.IDDungCu,
@@ -430,7 +428,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__HoaDon__5B896F4974A06A7F", x => x.IDHoaDon);
+                    table.PrimaryKey("PK__HoaDon__5B896F49B2BDCE01", x => x.IDHoaDon);
                     table.ForeignKey(
                         name: "chk_IDDieuTri_HoaDon",
                         column: x => x.IDDieuTri,
@@ -446,7 +444,7 @@ namespace WebQuanLyNhaKhoa.Migrations
                         column: x => x.IDKham,
                         principalTable: "DanhSachKham",
                         principalColumn: "IDKham");
-                });
+                });*/
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
