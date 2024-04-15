@@ -12,10 +12,6 @@ namespace WebQuanLyNhaKhoa.Controllers.HomePageCustomer
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult Add()
         {
             return View();

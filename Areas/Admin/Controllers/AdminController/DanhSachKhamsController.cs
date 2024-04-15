@@ -25,26 +25,6 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
             return View(await qlnhaKhoaContext.ToListAsync());
         }
 
-        // GET: DanhSachKhams/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var danhSachKham = await _context.DanhSachKhams
-                .Include(d => d.IdbenhNhanNavigation)
-                .Include(d => d.MaNvNavigation)
-                .FirstOrDefaultAsync(m => m.Idkham == id);
-            if (danhSachKham == null)
-            {
-                return NotFound();
-            }
-
-            return View(danhSachKham);
-        }
-
         // GET: DanhSachKhams/Create
         public IActionResult Create()
         {
