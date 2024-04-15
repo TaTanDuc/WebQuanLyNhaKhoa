@@ -206,10 +206,11 @@ namespace WebQuanLyNhaKhoa.Controllers.UserController
 
         // GET: HoaDons/Delete/5
         [Authorize]
-        public IActionResult PaymetFail()
+        public IActionResult PaymentFail()
         {
             return View();
         }
+
         [Authorize]
         public IActionResult PaymentCallBack([Bind("IdhoaDon,IddonThuoc,IddieuTri,IDKham,PhuongThucThanhToan,TienThuoc,TienDieuTri,TongTien,NgayLap,EmailBn")] HoaDon hoaDon)
         {
@@ -218,7 +219,7 @@ namespace WebQuanLyNhaKhoa.Controllers.UserController
             if (response == null    || response.VnPayResponseCode != "00")
             {
                 TempData["Message"] = "Lỗi thanh toán VnPay";
-                return RedirectToAction("PaymetFail");
+                return RedirectToAction("PaymentFail");
             }
             //var existingHoadon =  _context.HoaDons
             //                           .Include(p => p.IddieuTriNavigation)

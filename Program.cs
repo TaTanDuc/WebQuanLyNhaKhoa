@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using WebQuanLyNhaKhoa.Data;
 using WebQuanLyNhaKhoa.ServicesPay;
-using WebQuanLyNhaKhoa.wwwroot.AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using System.Configuration;
 using WebQuanLyNhaKhoa.Models;
