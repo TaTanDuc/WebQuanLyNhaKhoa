@@ -21,13 +21,6 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
         {
             _context = context;
         }
-        public IActionResult ShowNhanViensPaging(int page = 1)
-        {
-            page = page < 1 ? 1 : page;
-            int pagesize = 6;
-            var nvs = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).ToPagedList(page, pagesize).ToList();
-            return View(nvs);
-        }
 
         // GET: NhanViens
         public IActionResult Index(string query = "", string role = "nothing", string sort = "nothing", int page = 1)
@@ -40,27 +33,31 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                     {
                         page = page < 1 ? 1 : page;
                         int pagesize = 8;
-                        List<NhanVien> nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).ToList();
+                        var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).ToPagedList(page, pagesize);
                         //const int pageSize = 5;
                         //if (pg < 1)
                         //    pg = 1;
                         //int nvCount = nhanViens.Count;
                         //var pager = new Pager(nvCount, pg, pageSize);
                         //int recSkip = (pg -1) * pageSize;
-                        //var data = nhanViens.Skip(recSkip).Take(pager.PageSize).ToList();
+                        //var data = nhanViens.Skip(recSkip).Take(pager.PageSize).ToPagedList(page, pagesize);
                         //this.ViewBag.Pager = pager;
-                        return View(nhanViens.ToPagedList(page, pagesize));
+                        return View(nhanViens);
                     }
                     else
                     {
                         if (sort == "Ten")
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).OrderBy(n => n.Ten).ToList();
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).OrderBy(n => n.Ten).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                         else
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).OrderBy(n => n.MaCvNavigation.TenCv).ToList();
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).OrderBy(n => n.MaCvNavigation.TenCv).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                     }
@@ -69,12 +66,16 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                 {
                     if (sort == "Ten")
                     {
-                        List<NhanVien> nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).Where(n => n.TenDangNhap == role).OrderBy(n => n.Ten).ToList();
+                        page = page < 1 ? 1 : page;
+                        int pagesize = 8;
+                        var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).Where(n => n.TenDangNhap == role).OrderBy(n => n.Ten).ToPagedList(page, pagesize);
                         return View(nhanViens);
                     }
                     else
                     {
-                        List<NhanVien> nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).Where(n => n.TenDangNhap == role).OrderBy(n => n.MaCvNavigation.TenCv).ToList();
+                        page = page < 1 ? 1 : page;
+                        int pagesize = 8;
+                        var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).Where(n => n.TenDangNhap == role).OrderBy(n => n.MaCvNavigation.TenCv).ToPagedList(page, pagesize);
                         return View(nhanViens);
                     }
                 }
@@ -85,28 +86,34 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                 {
                     if (sort == "nothing")
                     {
-                        List<NhanVien> nhanViens = _context.NhanViens
+                        page = page < 1 ? 1 : page;
+                        int pagesize = 8;
+                        var nhanViens = _context.NhanViens
                         .Include(n => n.MaCvNavigation)
                         .Include(n => n.TenDangNhapNavigation)
-                        .Where(n => n.Ten.Contains(query)).ToList();
+                        .Where(n => n.Ten.Contains(query)).ToPagedList(page, pagesize);
                         return View(nhanViens);
                     }
                     else
                     {
                         if (sort == "Ten")
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens
                        .Include(n => n.MaCvNavigation)
                        .Include(n => n.TenDangNhapNavigation)
-                       .Where(n => n.Ten.Contains(query)).OrderBy(n => n.Ten).ToList();
+                       .Where(n => n.Ten.Contains(query)).OrderBy(n => n.Ten).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                         else
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens
                     .Include(n => n.MaCvNavigation)
                     .Include(n => n.TenDangNhapNavigation)
-                     .Where(n => n.Ten.Contains(query)).OrderBy(n => n.MaCvNavigation.TenCv).ToList();
+                     .Where(n => n.Ten.Contains(query)).OrderBy(n => n.MaCvNavigation.TenCv).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                     }
@@ -116,30 +123,36 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                 {
                     if (sort == "nothing")
                     {
-                        List<NhanVien> nhanViens = _context.NhanViens
+                        page = page < 1 ? 1 : page;
+                        int pagesize = 8;
+                        var nhanViens = _context.NhanViens
                                  .Include(n => n.MaCvNavigation)
                                  .Include(n => n.TenDangNhapNavigation)
-                                 .Where(n => n.Ten.Contains(query)).Where(n => n.TenDangNhap == role).ToList();
+                                 .Where(n => n.Ten.Contains(query)).Where(n => n.TenDangNhap == role).ToPagedList(page, pagesize);
                         return View(nhanViens);
                     }
                     else
                     {
                         if (sort == "Ten")
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens
                        .Include(n => n.MaCvNavigation)
                        .Include(n => n.TenDangNhapNavigation)
                        .Where(n => n.Ten.Contains(query)).Where(n => n.TenDangNhap == role)
-                       .OrderBy(n => n.Ten).ToList();
+                       .OrderBy(n => n.Ten).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                         else
                         {
-                            List<NhanVien> nhanViens = _context.NhanViens
+                            page = page < 1 ? 1 : page;
+                            int pagesize = 8;
+                            var nhanViens = _context.NhanViens
                     .Include(n => n.MaCvNavigation)
                     .Include(n => n.TenDangNhapNavigation)
                      .Where(n => n.Ten.Contains(query)).Where(n => n.TenDangNhap == role)
-                     .OrderBy(n => n.MaCvNavigation.TenCv).ToList();
+                     .OrderBy(n => n.MaCvNavigation.TenCv).ToPagedList(page, pagesize);
                             return View(nhanViens);
                         }
                     }
