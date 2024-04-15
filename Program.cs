@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using WebQuanLyNhaKhoa.Data;
+using WebQuanLyNhaKhoa.ServicesPay;
+using WebQuanLyNhaKhoa.wwwroot.AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using System.Configuration;
 using WebQuanLyNhaKhoa.Models;
@@ -14,13 +16,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddSingleton<IVnPayService,VnPayService>();
+builder.Services.AddScoped<EmailService>();
+builder.Services.AddAuthentication();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("NhaKhoa"));
 });
 
-builder.Services.AddScoped<EmailService>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
