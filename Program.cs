@@ -17,12 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IVnPayService,VnPayService>();
 builder.Services.AddScoped<EmailService>();
-builder.Services.AddAuthentication();
 builder.Services.AddDbContext<QlnhaKhoaContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("NhaKhoa"));
 });
-
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -31,10 +29,10 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = $"/Identity/Account/AccessDenied";
 });
 
-/*builder.Services.AddIdentity<UserVM,IdentityRole>()
+builder.Services.AddIdentity<UserVM, IdentityRole>()
     .AddEntityFrameworkStores<QlnhaKhoaContext>()
     .AddDefaultTokenProviders()
-	.AddDefaultUI();*/
+    .AddDefaultUI();
 
 builder.Services.AddControllers(options =>
 {
@@ -63,7 +61,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.MapControllerRoute(
- name: "admin",
+ name: "areas",
  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
  );
 

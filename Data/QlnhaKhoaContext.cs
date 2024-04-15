@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebQuanLyNhaKhoa.Models;
 
 namespace WebQuanLyNhaKhoa.Data;
 
-public partial class QlnhaKhoaContext : DbContext
+public partial class QlnhaKhoaContext : IdentityDbContext<UserVM>
 {
     public QlnhaKhoaContext()
     {
@@ -47,6 +49,7 @@ public partial class QlnhaKhoaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<BenhNhan>(entity =>
         {
             entity.HasKey(e => e.IdbenhNhan).HasName("PK__BenhNhan__33CC78E47C6839C0");
@@ -107,6 +110,10 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.ToTable("DanhSachKham");
 
+            entity.HasIndex(e => e.IdbenhNhan, "IX_DanhSachKham_IDBenhNhan");
+
+            entity.HasIndex(e => e.MaNv, "IX_DanhSachKham_MaNV");
+
             entity.Property(e => e.Idkham)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -136,6 +143,8 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.ToTable("DichVu");
 
+            entity.HasIndex(e => e.IdchanDoan, "IX_DichVu_IDChanDoan");
+
             entity.Property(e => e.IddichVu)
                 .HasMaxLength(4)
                 .IsUnicode(false)
@@ -161,6 +170,12 @@ public partial class QlnhaKhoaContext : DbContext
             entity.HasKey(e => e.IddieuTri).HasName("PK__DieuTri__85B3D346E66C6A7C");
 
             entity.ToTable("DieuTri");
+
+            entity.HasIndex(e => e.IddichVu, "IX_DieuTri_IDDichVu");
+
+            entity.HasIndex(e => e.IddungCu, "IX_DieuTri_IDDungCu");
+
+            entity.HasIndex(e => e.Idkham, "IX_DieuTri_IDKham");
 
             entity.Property(e => e.IddieuTri).HasColumnName("IDDieuTri");
             entity.Property(e => e.IddichVu)
@@ -202,6 +217,10 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.ToTable("DonThuoc");
 
+            entity.HasIndex(e => e.IddungCu, "IX_DonThuoc_IDDungCu");
+
+            entity.HasIndex(e => e.Idkham, "IX_DonThuoc_IDKham");
+
             entity.Property(e => e.IddonThuoc).HasColumnName("IDDonThuoc");
             entity.Property(e => e.IddungCu)
                 .HasMaxLength(4)
@@ -235,6 +254,12 @@ public partial class QlnhaKhoaContext : DbContext
             entity.HasKey(e => e.IdhoaDon).HasName("PK__HoaDon__5B896F49130889D2");
 
             entity.ToTable("HoaDon");
+
+            entity.HasIndex(e => e.IddieuTri, "IX_HoaDon_IDDieuTri");
+
+            entity.HasIndex(e => e.IddonThuoc, "IX_HoaDon_IDDonThuoc");
+
+            entity.HasIndex(e => e.Idkham, "IX_HoaDon_IDKham");
 
             entity.Property(e => e.IdhoaDon).HasColumnName("IDHoaDon");
             entity.Property(e => e.EmailBn)
@@ -275,6 +300,8 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.ToTable("Kho");
 
+            entity.HasIndex(e => e.IdsanPham, "IX_Kho_IDSanPham");
+
             entity.Property(e => e.IddungCu)
                 .HasMaxLength(4)
                 .IsUnicode(false)
@@ -301,6 +328,8 @@ public partial class QlnhaKhoaContext : DbContext
 
             entity.ToTable("LichSuNhapXuat");
 
+            entity.HasIndex(e => e.IddungCu, "IX_LichSuNhapXuat_IDDungCu");
+
             entity.Property(e => e.MaLs).HasColumnName("MaLS");
             entity.Property(e => e.Don).HasColumnType("money");
             entity.Property(e => e.DonViTinh).HasMaxLength(255);
@@ -326,6 +355,10 @@ public partial class QlnhaKhoaContext : DbContext
             entity.HasKey(e => e.MaNv).HasName("PK__NhanVien__2725D70AE53BF21D");
 
             entity.ToTable("NhanVien");
+
+            entity.HasIndex(e => e.MaCv, "IX_NhanVien_MaCV");
+
+            entity.HasIndex(e => e.TenDangNhap, "IX_NhanVien_TenDangNhap");
 
             entity.Property(e => e.MaNv).HasColumnName("MaNV");
             entity.Property(e => e.MaCv)

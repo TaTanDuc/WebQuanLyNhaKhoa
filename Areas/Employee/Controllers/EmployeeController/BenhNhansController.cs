@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
+using WebQuanLyNhaKhoa.Models;
 using X.PagedList;
 
-namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
+namespace WebQuanLyNhaKhoa.Areas.Employee.EmployeeController
 {
-    [Area("Admin")]
+    [Area("Employee")]
+    [Authorize(Roles = SD.Role_Employee)]
     public class BenhNhansController : Controller
     {
         private readonly QlnhaKhoaContext _context;
@@ -147,6 +151,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
         }
 
         // GET: BenhNhans/Edit/5
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -198,6 +203,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
         }
 
         // GET: BenhNhans/Delete/5
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)

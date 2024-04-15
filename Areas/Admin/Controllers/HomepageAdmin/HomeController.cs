@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class HomeController : Controller
     {
         private readonly QlnhaKhoaContext _context;

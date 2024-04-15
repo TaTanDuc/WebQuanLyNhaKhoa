@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.X86;
 using WebQuanLyNhaKhoa.Data;
+using WebQuanLyNhaKhoa.Models;
 
 namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class DieuTriController : Controller
     {
         private readonly QlnhaKhoaContext _context;

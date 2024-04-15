@@ -10,9 +10,11 @@ using WebQuanLyNhaKhoa.Data;
 using System.Drawing.Printing;
 using WebQuanLyNhaKhoa.Models;
 using X.PagedList;
-namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
+using Microsoft.AspNetCore.Authorization;
+namespace WebQuanLyNhaKhoa.Areas.Employee.EmployeeController
 {
-    [Area("Admin")]
+    [Area("Employee")]
+    [Authorize(Roles = SD.Role_Employee)]
     public class NhanViensController : Controller
     {
         private readonly QlnhaKhoaContext _context;
@@ -21,10 +23,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
         {
             _context = context;
         }
-<<<<<<< HEAD:Areas/Admin/Controllers/HomepageAdmin/NhanViensController.cs
 
-=======
->>>>>>> origin/TLong:Controllers/HomepageAdmin/NhanViensController.cs
         // GET: NhanViens
         public IActionResult Index(string query = "", string role = "nothing", string sort = "nothing", int page = 1)
         {
@@ -34,7 +33,6 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                 {
                     if (sort == "nothing")
                     {
-<<<<<<< HEAD:Areas/Admin/Controllers/HomepageAdmin/NhanViensController.cs
                         page = page < 1 ? 1 : page;
                         int pagesize = 8;
                         var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).ToPagedList(page, pagesize);
@@ -46,12 +44,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                         //int recSkip = (pg -1) * pageSize;
                         //var data = nhanViens.Skip(recSkip).Take(pager.PageSize).ToPagedList(page, pagesize);
                         //this.ViewBag.Pager = pager;
-=======
-                     
-                        page = page < 1 ? 1 : page;
-                        int pagesize = 8;
-                        var nhanViens = _context.NhanViens.Include(n => n.MaCvNavigation).Include(n => n.TenDangNhapNavigation).ToPagedList(page, pagesize);
->>>>>>> origin/TLong:Controllers/HomepageAdmin/NhanViensController.cs
+
                         return View(nhanViens);
                     }
                     else
@@ -96,20 +89,12 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
                 {
                     if (sort == "nothing")
                     {
-<<<<<<< HEAD:Areas/Admin/Controllers/HomepageAdmin/NhanViensController.cs
                         page = page < 1 ? 1 : page;
                         int pagesize = 8;
                         var nhanViens = _context.NhanViens
                         .Include(n => n.MaCvNavigation)
                         .Include(n => n.TenDangNhapNavigation)
                         .Where(n => n.Ten.Contains(query)).ToPagedList(page, pagesize);
-=======
-                        int pagesize = 6;
-                        var nhanViens = _context.NhanViens
-                        .Include(n => n.MaCvNavigation)
-                        .Include(n => n.TenDangNhapNavigation)
-                        .Where(n => n.Ten.Contains(query)).ToPagedList(page, pagesize); ;
->>>>>>> origin/TLong:Controllers/HomepageAdmin/NhanViensController.cs
                         return View(nhanViens);
                     }
                     else
@@ -209,6 +194,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
             return "/images/" + Hinh.FileName; // Trả về đường dẫn tương đối
         }
         // GET: NhanViens/Create
+        [Authorize(Roles = SD.Role_Admin)]
         public IActionResult Create()
         {
             ViewData["MaCv"] = new SelectList(_context.ChucVus, "MaCv", "TenCv");
@@ -233,6 +219,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
             return View(nhanVien);
         }
         // GET: NhanViens/Edit/5
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -284,6 +271,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
         }
 
         // GET: NhanViens/Delete/5
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
+using WebQuanLyNhaKhoa.Models;
 namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class Statics : Controller
     {
         QlnhaKhoaContext _context;

@@ -2,28 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebQuanLyNhaKhoa.Data;
+using WebQuanLyNhaKhoa.Models;
 
-namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.HomepageAdmin
+namespace WebQuanLyNhaKhoa.Areas.Employee.EmployeeController
 {
-    [Area("Admin")]
-    public class ServicesController : Controller
+    [Area("Employee")]
+    [Authorize(Roles = SD.Role_Employee)]
+    public class KhoesController : Controller
     {
         private readonly QlnhaKhoaContext _context;
 
-        public ServicesController(QlnhaKhoaContext context)
+        public KhoesController(QlnhaKhoaContext context)
         {
             _context = context;
         }
 
-        // GET: Services
+        // GET: Khoes
         public async Task<IActionResult> Index()
         {
-            var qlnhaKhoaContext = _context.DichVus.Include(d => d.IdchanDoanNavigation);
+            var qlnhaKhoaContext = _context.Khos.Include(k => k.IdsanPhamNavigation);
             return View(await qlnhaKhoaContext.ToListAsync());
         }
+
     }
 }

@@ -10,9 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using WebQuanLyNhaKhoa.ServicesPay;
+using WebQuanLyNhaKhoa.Models;
 namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class HoaDonsController : Controller
     {
         private readonly QlnhaKhoaContext _context;
@@ -159,7 +161,7 @@ namespace WebQuanLyNhaKhoa.Area.Admin.Controllers.AdminController
                 //_context.Update(hoaDon);
                 _context.Entry(existingHoadon).CurrentValues.SetValues(hoaDon);
                 await _context.SaveChangesAsync();
-                if (payment == "Thanh toán VnPay")
+                if (payment == "VN-PAY")
                 {
                     var vnPayModel = new VnPaymentRequestModel()
                     {
