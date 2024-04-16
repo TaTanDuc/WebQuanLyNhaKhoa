@@ -8,7 +8,7 @@
 <h1 class="uppercase text-4xl font-semibold tracking-[.4rem] text-center">Thông tin danh sách hóa đơn</h1>
 <div class="my-5">
     <a asp-action="Index" asp-controller="DanhSachKhams">
-        <button class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"><i class="fa-solid fa-arrow-left"></i>  Quay về danh sách điều trị</button>
+        <button class="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"><i class="fa-solid fa-arrow-left"></i>  Quay về danh sách khám</button>
     </a>
  </div>
     <div class="flex flex-col gap-10">
@@ -88,8 +88,8 @@
                                     </p>
                                 </div>
                                 <div class="col-span-2">
-                                    <a asp-action="Edit" asp-route-id="@item.IdhoaDon" class="rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 duration-300">
-                                        Thanh toán
+                                    <a asp-action="Details" asp-route-id="@item.IdhoaDon" class="rounded-lg px-4 py-2 bg-green-300 hover:bg-green-400 duration-300">
+                                        Details
                                     </a>
                                 </div>
                             </div>
